@@ -17,7 +17,7 @@
         public function createNoticia(NoticiaModel $noticia) {
             $conexao = (new Conexao())->getConexao();
 
-            $sql = 'INSERT INTO noticia VALUES(:id, :idAutor, :titulo, :contudo, :imagem);';
+            $sql = 'INSERT INTO noticia VALUES(:id, :idAutor, :titulo, :conteudo, :imagem);';
 
             $stmt = $conexao->prepare($sql);
             $stmt->bindValue('id', null);
@@ -25,6 +25,8 @@
             $stmt->bindValue(':titulo', $noticia->tituloNoticia);
             $stmt->bindValue(':conteudo', $noticia->conteudoNoticia);
             $stmt->bindValue(':imagem', $noticia->imagemNoticia);
+
+            return $stmt->execute();
 
 
         }
